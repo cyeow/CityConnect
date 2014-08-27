@@ -57,9 +57,8 @@ void CityConnect::main() {
 		
 	while (true) {
 		cout << "Enter command:";
-		string command;
-		getline (cin, command);
-		string userCommand = command;
+		string userCommand;
+		getline (cin, userCommand);
 		string feedback = executeCommand(userCommand);
 		showToUser(feedback);	
 	}
@@ -119,7 +118,7 @@ string CityConnect::executeCommand(string userCommand) {
 /* ==============NOTE TO STUDENTS======================================
  * After reading the above code, the reader should have a reasonable
  * understanding of how the program works. If the reader wants to go 
- * EVEN more deep into the solution, he/she can read the methods given 
+ * EVEN deeper into the solution, he/she can read the methods given 
  * below that solves various sub-problems at lower levels of abstraction. 
  * ====================================================================
  */
@@ -133,7 +132,7 @@ string CityConnect::executeCommand(string userCommand) {
  */
 CityConnect::COMMAND_TYPE CityConnect::determineCommandType(string commandTypeString) {
 
-	    // In C++, we do not need to check if the string is null if it is not declare as a pointer
+	    // In C++, we do not need to check if the string is null if it is not declared as a pointer
 
 	if(equalsIgnoreCase(commandTypeString, "addroute")) {
 		return COMMAND_TYPE::ADD_ROUTE;
@@ -169,13 +168,13 @@ string CityConnect::getDistance(string userCommand) {
 
 	if (position == NOT_FOUND) {
 		sprintf_s(buffer, MESSAGE_NO_ROUTE.c_str(), newStartLocation.c_str(), newEndLocation.c_str());
-		return buffer;
 	} 
 	else 
 	{
 		sprintf_s(buffer, MESSAGE_DISTANCE.c_str(), newStartLocation.c_str(), newEndLocation.c_str(), route[position][STORAGE_POSITION_DISTANCE].c_str());
-		return buffer;
 	}
+
+	return buffer;
 }
 
 /**
@@ -188,10 +187,8 @@ int CityConnect::getPositionOfExistingRoute(string newStartLocation, string newE
 		string existing_start_location = route[i][STORAGE_POSITION_START_LOCATION];
 		string existing_end_location = route[i][STORAGE_POSITION_END_LOCATION];
 			
-		if (existing_start_location.empty()) { //beginning of empty slots
-			return NOT_FOUND;
-		} else if (sameRoute(existing_start_location, existing_end_location, 
-				newStartLocation, newEndLocation)) {
+		if (!(existing_start_location.empty()) && (sameRoute(existing_start_location, existing_end_location, 
+				newStartLocation, newEndLocation))) {
 			return i;
 		} 
 	}

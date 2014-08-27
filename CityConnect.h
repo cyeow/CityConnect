@@ -35,15 +35,13 @@
  * ====================================================================
  */
 
-// This is to safeguard the class to prevent redefined
+// This is to safeguard the class to prevent redefinition
 #ifndef CITYCONNECT_H_
 #define CITYCONNECT_H_
 
 #include <iostream>
 #include <string>
-#include <algorithm>
 #include <sstream>
-#include <stdio.h>
 #include <iterator>
 #include <vector>
 
@@ -55,6 +53,23 @@ public:
 	enum COMMAND_TYPE {
 		ADD_ROUTE, GET_DISTANCE, EXIT, INVALID
 	};	
+
+	static string executeCommand(string userCommand);
+
+	/*
+	* ==============NOTE TO STUDENTS======================================
+	* Ignore the methods below. They are designed so that the C++ code
+	* is similar with the Java code.
+	* ====================================================================
+	*/
+	static void main();
+	static string trim_right(const string& s, const string& delimiters = " \f\n\r\t\v");
+	static string trim_left(const string& s, const string& delimiters = " \f\n\r\t\v");
+	static string trim(const string& s, const string& delimiters = " \f\n\r\t\v");
+	static bool equalsIgnoreCase(const string& str1, const string& str2);
+	static int parseInt(string str);
+	static string replace(string a, string b, string c);
+	template <typename T, size_t N> inline static size_t sizeOfArray(const T(&)[N]);
 
 private:
 	/*
@@ -125,24 +140,6 @@ private:
 	static string removeFirstWord(string userCommand);
 	static string getFirstWord(string userCommand);
 	static vector<string> splitParameters(string commandParametersString);
-
-public:
-	static string executeCommand(string userCommand);
-
-	/*
-	 * ==============NOTE TO STUDENTS====================================== 
-	 * Ignore the methods below. They are designed so that the C++ code 
-	 * is similar with the Java code.
-	 * ====================================================================
-	 */
-	static void main();
-	static string trim_right(const string& s, const string& delimiters = " \f\n\r\t\v" );
-	static string trim_left(const string& s, const string& delimiters = " \f\n\r\t\v" );
-	static string trim(const string& s, const string& delimiters = " \f\n\r\t\v" );
-	static bool equalsIgnoreCase(const string& str1, const string& str2);
-	static int parseInt(string str);
-	static string replace(string a ,string b , string c);
-	template <typename T, size_t N> inline static size_t sizeOfArray( const T(&)[ N ] );
 };
 
 #endif
