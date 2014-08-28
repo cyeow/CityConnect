@@ -182,7 +182,7 @@ string CityConnect::getDistance(string userCommand) {
  *    newStartLocation and newEndLocation. Returns NOT_FOUND if not found.
  */
 int CityConnect::getPositionOfExistingRoute(string newStartLocation, string newEndLocation) {
-	for (int i = 0; i < sizeOfArray(route); i++) {
+	for (int i = 0; i < (int)sizeOfArray(route); i++) {
 			
 		string existing_start_location = route[i][STORAGE_POSITION_START_LOCATION];
 		string existing_end_location = route[i][STORAGE_POSITION_END_LOCATION];
@@ -248,15 +248,13 @@ void CityConnect::addRouteAtPosition(string newStartLocation, string newEndLocat
  *   no suitable slot is found.
  */
 int CityConnect::location(string newStartLocation, string newEndLocation) {
-	for (int i = 0; i < sizeOfArray(route); i++) {
+	for (int i = 0; i < (int)sizeOfArray(route); i++) {
 
 		string existingStartLocation = route[i][STORAGE_POSITION_START_LOCATION];
 		string existingEndLocation = route[i][STORAGE_POSITION_END_LOCATION];
 			
-		if (existingStartLocation.empty()) { //empty slot 
-			return i;
-		} else if (sameRoute(existingStartLocation, existingEndLocation, 
-			newStartLocation, newEndLocation)){
+		if (existingStartLocation.empty() || sameRoute(existingStartLocation, existingEndLocation, 
+			newStartLocation, newEndLocation)){ // empty or same route
 			return i;
 		} 
 	}
